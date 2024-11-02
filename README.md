@@ -11,10 +11,16 @@ Antes de comenzar, asegúrate de tener instalados los siguientes requisitos:
 - [Docker](https://docs.docker.com/get-docker/) 🐳
 - [Docker Compose](https://docs.docker.com/compose/install/) 🔧
 
-## 📂 Estructura del Proyecto
+### 📁 Estructura del Proyecto
 
-gestión_restaurante/ │ ├── docker-compose.yml ├── target/ │ └── gestion_restaurante-0.0.1-SNAPSHOT.jar └── sql/ └── init.sql
-
+```plaintext
+gestión_restaurante/
+├── docker-compose.yml
+├── target/
+│   └── gestion_restaurante-0.0.1-SNAPSHOT.jar
+└── sql/
+    └── init.sql
+```
 
 - **docker-compose.yml**: Archivo de configuración para Docker Compose.
 - **target/**: Contiene el archivo JAR de la aplicación.
