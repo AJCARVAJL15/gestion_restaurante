@@ -1,0 +1,32 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres_restaurante
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: sistema_restaurante
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    image: openjdk:21
+    container_name: gestion_restaurante_app
+    working_dir: /app
+    volumes:
+      - ./target:/app
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/sistema_restaurante
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: admin
+    command: ["sh", "-c", "sleep 10 && java -jar gestion_restaurante-0.0.1-SNAPSHOT.jar"]
+    depends_on:
+      - db
+
+volumes:
+  postgres_data: {}
