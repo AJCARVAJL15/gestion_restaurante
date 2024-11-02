@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "usuarios")
-public class usuario {
+public class Usuario {
     @Id
     @Column(nullable=false)
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -26,7 +26,7 @@ public class usuario {
 
     @ManyToOne
     @JoinColumn(name = "id_empleado", nullable = false, referencedColumnName = "id_empleado")
-    private empleado empleado;
+    private Empleado empleado;
 
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "rol", nullable = false)

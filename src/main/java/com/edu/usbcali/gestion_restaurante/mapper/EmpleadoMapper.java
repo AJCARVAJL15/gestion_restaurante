@@ -1,6 +1,6 @@
 package com.edu.usbcali.gestion_restaurante.mapper;
 
-import com.edu.usbcali.gestion_restaurante.domain.empleado;
+import com.edu.usbcali.gestion_restaurante.domain.Empleado;
 import com.edu.usbcali.gestion_restaurante.dto.EmpleadoDTO;
 
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class EmpleadoMapper {
 
-    public static EmpleadoDTO domainToDTO(empleado emp) {
+    public static EmpleadoDTO domainToDTO(Empleado emp) {
         return EmpleadoDTO.builder()
                 .idEmpleado(emp.getId_empleado())
                 .nombreEmpleado(emp.getNombre_empleado())
@@ -20,8 +20,8 @@ public class EmpleadoMapper {
                 .build();
     }
 
-    public static empleado dTOToDomain(EmpleadoDTO empDTO) {
-        empleado emp = empleado.builder()
+    public static Empleado dTOToDomain(EmpleadoDTO empDTO) {
+        Empleado emp = Empleado.builder()
                 .id_empleado(empDTO.getIdEmpleado())
                 .nombre_empleado(empDTO.getNombreEmpleado())
                 .apellido_empleado(empDTO.getApellidoEmpleado())
@@ -37,11 +37,11 @@ public class EmpleadoMapper {
         return emp;
     }
 
-    public static List<EmpleadoDTO> domainToDTOList(List<empleado> empleados) {
+    public static List<EmpleadoDTO> domainToDTOList(List<Empleado> empleados) {
         return empleados.stream().map(EmpleadoMapper::domainToDTO).collect(Collectors.toList());
     }
 
-    public static List<empleado> dTOToDomainList(List<EmpleadoDTO> empleadosDTO) {
+    public static List<Empleado> dTOToDomainList(List<EmpleadoDTO> empleadosDTO) {
         return empleadosDTO.stream().map(EmpleadoMapper::dTOToDomain).collect(Collectors.toList());
     }
 }

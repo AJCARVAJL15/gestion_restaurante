@@ -1,9 +1,11 @@
 package com.edu.usbcali.gestion_restaurante.domain;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -13,20 +15,19 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @Table(name = "venta")
-
-public class venta {
+public class Venta { // Cambiar a "Venta" con mayúscula inicial
     @Id
-    @Column(nullable=false)
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_venta;
 
     @ManyToOne
     @JoinColumn(name = "id_sede", nullable = false, referencedColumnName = "id_sede")
-    private sede sede;
+    private Sede sede; // Cambiar a "Sede" con mayúscula inicial
 
     @ManyToOne
     @JoinColumn(name = "id_cajero", nullable = false, referencedColumnName = "id_empleado")
-    private empleado empleado;
+    private Empleado empleado; // Cambiar a "Empleado" con mayúscula inicial
 
     @Column(nullable = false, name = "fecha")
     private LocalDateTime fecha_venta;
@@ -38,7 +39,6 @@ public class venta {
     @Column(columnDefinition = "metodo_pago")
     private MetodoPago metodo_pago;
 
-   
     public enum MetodoPago {
         EFECTIVO, TARJETA, TRANSFERENCIA
     }

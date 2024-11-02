@@ -1,6 +1,6 @@
 package com.edu.usbcali.gestion_restaurante.mapper;
 
-import com.edu.usbcali.gestion_restaurante.domain.venta;
+import com.edu.usbcali.gestion_restaurante.domain.Venta; // Cambiar a "Venta" con mayúscula inicial
 import com.edu.usbcali.gestion_restaurante.dto.VentaDTO;
 
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class VentaMapper {
 
-    public static VentaDTO domainToDTO(venta venta) {
+    public static VentaDTO domainToDTO(Venta venta) { // Cambiar a "Venta" con mayúscula inicial
         return VentaDTO.builder()
                 .idVenta(venta.getId_venta())
                 .idSede(venta.getSede() != null ? venta.getSede().getId_sede() : null)
@@ -19,25 +19,25 @@ public class VentaMapper {
                 .build();
     }
 
-    public static venta dTOToDomain(VentaDTO ventaDTO) {
-        venta venta = venta.builder()
+    public static Venta dTOToDomain(VentaDTO ventaDTO) { // Cambiar a "Venta" con mayúscula inicial
+        Venta venta = Venta.builder() // Cambiar a "Venta" con mayúscula inicial
                 .id_venta(ventaDTO.getIdVenta())
                 .fecha_venta(ventaDTO.getFechaVenta())
                 .total_venta(ventaDTO.getTotalVenta())
                 .build();
 
         if (ventaDTO.getMetodoPago() != null) {
-            venta.setMetodo_pago(venta.MetodoPago.valueOf(ventaDTO.getMetodoPago()));
+            venta.setMetodo_pago(Venta.MetodoPago.valueOf(ventaDTO.getMetodoPago())); // Cambiar a "Venta" con mayúscula inicial
         }
 
         return venta;
     }
 
-    public static List<VentaDTO> domainToDTOList(List<venta> ventas) {
+    public static List<VentaDTO> domainToDTOList(List<Venta> ventas) { // Cambiar a "Venta" con mayúscula inicial
         return ventas.stream().map(VentaMapper::domainToDTO).collect(Collectors.toList());
     }
 
-    public static List<venta> dTOToDomainList(List<VentaDTO> ventasDTO) {
+    public static List<Venta> dTOToDomainList(List<VentaDTO> ventasDTO) { // Cambiar a "Venta" con mayúscula inicial
         return ventasDTO.stream().map(VentaMapper::dTOToDomain).collect(Collectors.toList());
     }
 }

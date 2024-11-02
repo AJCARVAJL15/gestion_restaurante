@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @Table(name = "sedes")
-public class sede { // Nombre de la clase en mayúscula
+public class Sede { // Nombre de la clase en mayúscula
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,13 +1,13 @@
 package com.edu.usbcali.gestion_restaurante.mapper;
 
-import com.edu.usbcali.gestion_restaurante.domain.cierrecaja;
+import com.edu.usbcali.gestion_restaurante.domain.CierreCaja;
 import com.edu.usbcali.gestion_restaurante.dto.CierrecajaDTO;
 
 import java.util.List;
 
 public class CierrecajaMapper {
 
-    public static CierrecajaDTO domainToDTO(cierrecaja cierre) {
+    public static CierrecajaDTO domainToDTO(CierreCaja cierre) {
         return CierrecajaDTO.builder()
                 .idCierre(cierre.getId_cierre())
                 .idSede(cierre.getSede().getId_sede()) // Asegúrate de que 'sede' no sea null
@@ -20,8 +20,8 @@ public class CierrecajaMapper {
                 .build();
     }
 
-    public static cierrecaja dTOToDomain(CierrecajaDTO cierreDTO) {
-        return cierrecaja.builder()
+    public static CierreCaja dTOToDomain(CierrecajaDTO cierreDTO) {
+        return CierreCaja.builder()
                 .id_cierre(cierreDTO.getIdCierre())
                 .fecha_cierre(cierreDTO.getFechaCierre())
                 .total_efectivo(cierreDTO.getTotalEfectivo())
@@ -31,11 +31,11 @@ public class CierrecajaMapper {
                 .build();
     }
 
-    public static List<CierrecajaDTO> domainToDTOList(List<cierrecaja> cierres) {
+    public static List<CierrecajaDTO> domainToDTOList(List<CierreCaja> cierres) {
         return cierres.stream().map(CierrecajaMapper::domainToDTO).toList();
     }
 
-    public static List<cierrecaja> dTOToDomainList(List<CierrecajaDTO> cierresDTO) {
+    public static List<CierreCaja> dTOToDomainList(List<CierrecajaDTO> cierresDTO) {
         return cierresDTO.stream().map(CierrecajaMapper::dTOToDomain).toList();
     }
 }
