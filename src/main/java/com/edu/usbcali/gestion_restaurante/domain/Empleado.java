@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @Table(name = "empleados")
-public class empleado {
+public class Empleado {
     @Id
     @Column(nullable=false)
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -36,7 +36,7 @@ public class empleado {
 
     @ManyToOne
     @JoinColumn(name = "id_sede", nullable = false, referencedColumnName = "id_sede")
-    private sede sede;
+    private Sede sede;
 
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "cargo")

@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Entity
 @Table(name = "cierrescaja")
-public class cierrecaja {
+public class CierreCaja {
     @Id
     @Column(nullable=false)
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -22,7 +22,7 @@ public class cierrecaja {
 
     @ManyToOne
     @JoinColumn(name = "id_sede", nullable = false, referencedColumnName = "id_sede")
-    private sede sede;
+    private Sede sede;
 
     @Column(name = "fecha")
     private LocalDateTime fecha_cierre;
@@ -41,6 +41,6 @@ public class cierrecaja {
 
     @ManyToOne
     @JoinColumn(name = "id_empleado", nullable = false, referencedColumnName = "id_empleado")
-    private empleado empleado;
+    private Empleado empleado;
 
 }
