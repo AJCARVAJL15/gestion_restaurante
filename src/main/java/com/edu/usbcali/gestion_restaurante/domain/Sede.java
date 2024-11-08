@@ -25,25 +25,22 @@ public class Sede { // Nombre de la clase en mayúscula
     @Column(nullable = false, name = "ubicacion", length = 100)
     private String direccion_sede;
 
-    @Column(nullable = false, name = "telefono_contacto", length = 20)
-    private String telefono_sede;
-
     @Column(nullable = false, name = "fecha_apertura")
     private LocalDateTime fecha_apertura;
 
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "tipo")
+    @Column(name = "tipo" ,  columnDefinition = "VARCHAR(20)")
     private TipoSede tipo;
 
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "estado")
+    @Column(name = "estado", columnDefinition = "VARCHAR(20)")
     private Estado estado;
 
     public enum TipoSede {
-        PROPIA, FRANQUICIA
+        Propia, Franquicia
     }
 
     public enum Estado {
-        OPERATIVA, CERRADA, EN_MANTENIMIENTO
+        Operativa,Mantenimiento, Cerrada
     }
 }
