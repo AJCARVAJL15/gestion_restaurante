@@ -1,5 +1,4 @@
-package com.edu.usbcali.gestion_restaurante.dto;
-
+package com.edu.usbcali.gestion_restaurante.dto.request;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,11 +13,10 @@ import com.edu.usbcali.gestion_restaurante.domain.Sede.TipoSede;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class SedeDTO {
-    private Integer idSede;
+public class CrearSedeRequest {
     private String nombre_sede;
     private String direccion_sede;
     private LocalDateTime fecha_apertura;
-    private TipoSede tipo;       // Campo de tipo enumerado TipoSede
-    private Estado estado;     // Campo de tipo enumerado Estado
+    private TipoSede tipo;
+    private Estado estado;
 }
