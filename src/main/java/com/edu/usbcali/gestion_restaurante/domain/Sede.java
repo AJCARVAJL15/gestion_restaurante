@@ -28,6 +28,9 @@ public class Sede { // Nombre de la clase en mayúscula
     @Column(nullable = false, name = "fecha_apertura")
     private LocalDateTime fecha_apertura;
 
+    @Column(nullable = false, name = "telefono_contacto", length = 10)
+    private String telefono_contacto;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo" ,  columnDefinition = "VARCHAR(20)")
     private TipoSede tipo;

@@ -15,6 +15,8 @@ import com.edu.usbcali.gestion_restaurante.mapper.SedeMapper;
 import com.edu.usbcali.gestion_restaurante.repository.SedeRepository;
 import com.edu.usbcali.gestion_restaurante.service.SedeService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/sede")
 public class SedeController {
@@ -38,12 +40,7 @@ public class SedeController {
     }
 
     @PostMapping(value = "/create")
-    public ResponseEntity<SedeDTO> crearSede(@RequestBody CrearSedeRequest crearSedeRequest) throws Exception {
-        System.out.println("Nombre sede: " + crearSedeRequest.getNombre_sede());
-        System.out.println("Dirección sede: " + crearSedeRequest.getDireccion_sede());
-        System.out.println("Fecha de apertura: " + crearSedeRequest.getFecha_apertura());
-        System.out.println("Tipo de sede: " + crearSedeRequest.getTipo());
-        System.out.println("Estado de sede: " + crearSedeRequest.getEstado());
+    public ResponseEntity<SedeDTO> crearSede(@RequestBody @Valid CrearSedeRequest crearSedeRequest) throws Exception {
         SedeDTO sederesponSedeDTO = sedeService.crearSede(crearSedeRequest);
         return ResponseEntity.ok(sederesponSedeDTO);
     }

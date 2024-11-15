@@ -27,44 +27,7 @@ public class SedeServiceImpl implements SedeService{
         if(crearSedeRequest == null){
             throw new Exception("El objeto Sede no puede ser null");
         }
-        //Validar que el nombre de la sede no exista
-        if(crearSedeRequest.getNombre_sede() == null || crearSedeRequest.getNombre_sede().equals("")){
-            throw new Exception("El nombre de la sede no puede ser null o estar vacío");
-        }
-        //Validar tamaño del nombre de la sede
-        if(crearSedeRequest.getNombre_sede().length() > 100){
-            throw new Exception("El nombre de la sede no puede tener más de 100 caracteres");
-        }
-
-        //Validar que la direccion de la sede no exista
-        if(crearSedeRequest.getDireccion_sede() == null || crearSedeRequest.getDireccion_sede().equals("")){
-            throw new Exception("La direccion de la sede no puede ser null o estar vacío");
-        }
-
-        //Validar tamaño de la direccion de la sede
-        if(crearSedeRequest.getDireccion_sede().length() > 100){
-            throw new Exception("La direccion de la sede no puede tener más de 100 caracteres");
-        }
-
-     
-
-     
-
-        //Validar que la fecha de apertura de la sede no exista
-        if(crearSedeRequest.getFecha_apertura() == null){
-            throw new Exception("La fecha de apertura de la sede no puede ser null");
-        }
-
-        //Validar que el tipo de sede no exista
-        if(crearSedeRequest.getTipo() == null || crearSedeRequest.getTipo().equals("")){
-            throw new Exception("El tipo de sede no puede ser null o estar vacío");
-        }
-
-        //Validar que el estado de la sede no exista
-        if(crearSedeRequest.getEstado() == null || crearSedeRequest.getEstado().equals("")){
-           throw new Exception("El estado de la sede no puede ser null o estar vacío");
-      }
-
+       
         //Convertir el objeto CrearSedeRequest a un objeto Sede
         Sede sede = SedeMapper.crearSedeRequestToDomain(crearSedeRequest);
 

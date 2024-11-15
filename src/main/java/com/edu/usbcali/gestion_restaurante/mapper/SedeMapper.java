@@ -7,6 +7,8 @@ import com.edu.usbcali.gestion_restaurante.domain.Sede;
 import com.edu.usbcali.gestion_restaurante.dto.SedeDTO;
 import com.edu.usbcali.gestion_restaurante.dto.request.CrearSedeRequest;
 
+import java.time.LocalDateTime;
+
 public class SedeMapper {
 
     public static SedeDTO domainToDTO(Sede sede) { // Cambiar a "Sede" con mayúscula inicial
@@ -14,6 +16,7 @@ public class SedeMapper {
                 .idSede(sede.getId_sede())
                 .nombre_sede(sede.getNombre_sede())
                 .direccion_sede(sede.getDireccion_sede())
+                .telefono_contacto(sede.getTelefono_contacto())
                 .fecha_apertura(sede.getFecha_apertura())
                 .tipo(sede.getTipo() ) // Convierte el enum a String
                 .estado(sede.getEstado() ) // Convierte el enum a String
@@ -24,7 +27,8 @@ public class SedeMapper {
         Sede sede = Sede.builder() // Cambiar a "Sede" con mayúscula inicial
                 .id_sede(sedeDTO.getIdSede())
                 .nombre_sede(sedeDTO.getNombre_sede())
-                .direccion_sede(sedeDTO.getDireccion_sede())
+                .direccion_sede(sedeDTO.getDireccion_sede())    
+                .telefono_contacto(sedeDTO.getTelefono_contacto())
                 .fecha_apertura(sedeDTO.getFecha_apertura())
                 .tipo(sedeDTO.getTipo())
                 .estado(sedeDTO.getEstado())
@@ -54,7 +58,8 @@ public class SedeMapper {
         return Sede.builder()
             .nombre_sede(crearSedeRequest.getNombre_sede())
             .direccion_sede(crearSedeRequest.getDireccion_sede())
-            .fecha_apertura(crearSedeRequest.getFecha_apertura())
+            .fecha_apertura(LocalDateTime.now())
+            .telefono_contacto(crearSedeRequest.getTelefono_contacto())
             .tipo(crearSedeRequest.getTipo() )
             .estado(crearSedeRequest.getEstado())
             .build();
