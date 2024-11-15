@@ -38,5 +38,24 @@ public class SedeServiceImpl implements SedeService{
 
         return sedeDTO;
     }
+    @Override
+    public SedeDTO eliminarSede(int sedeId) throws Exception {
+        // Validar que el ID sea válido
+        if (sedeId <= 0) {
+            throw new Exception("El ID de la sede debe ser mayor a 0");
+        }
+
+        // Buscar la sede por ID
+        Sede sede = sedeRepository.findById(sedeId)
+            .orElseThrow(() -> new Exception("No se encontró la sede con ID: " + sedeId));
+
+        System.err.println(sede);
+
+        // Eliminar la sede
+        sedeRepository.delete(sede);
+
+        // Convertir y retornar el DTO
+        return SedeMapper.domainToDTO(sede);
+    }
 
 }
