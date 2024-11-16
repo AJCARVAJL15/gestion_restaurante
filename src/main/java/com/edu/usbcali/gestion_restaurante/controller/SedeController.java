@@ -3,6 +3,7 @@ package com.edu.usbcali.gestion_restaurante.controller;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +21,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/sede")
+@CrossOrigin("*")
 public class SedeController {
 
     private final SedeRepository sedeRepository;
