@@ -1,13 +1,13 @@
 package com.edu.usbcali.gestion_restaurante.mapper;
 
-import java.util.List; // Cambiar a "Sede" con mayúscula inicial
+import java.time.LocalDateTime; // Cambiar a "Sede" con mayúscula inicial
+import java.util.List;
 import java.util.stream.Collectors;
 
 import com.edu.usbcali.gestion_restaurante.domain.Sede;
 import com.edu.usbcali.gestion_restaurante.dto.SedeDTO;
 import com.edu.usbcali.gestion_restaurante.dto.request.CrearSedeRequest;
-
-import java.time.LocalDateTime;
+import com.edu.usbcali.gestion_restaurante.dto.request.UpdateSedeRequest;
 
 public class SedeMapper {
 
@@ -63,5 +63,12 @@ public class SedeMapper {
             .tipo(crearSedeRequest.getTipo() )
             .estado(crearSedeRequest.getEstado())
             .build();
+    }
+
+    public static Sede UpdateSedeRequestToDomain(Sede sede, UpdateSedeRequest updateSedeRequest){
+        sede.setTelefono_contacto(updateSedeRequest.getTelefono_contacto());
+        sede.setEstado(updateSedeRequest.getEstado());
+        sede.setTipo(updateSedeRequest.getTipo());
+        return sede;
     }
 }

@@ -1,13 +1,17 @@
 package com.edu.usbcali.gestion_restaurante.service.impl;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.edu.usbcali.gestion_restaurante.domain.Sede;
 import com.edu.usbcali.gestion_restaurante.dto.SedeDTO;
 import com.edu.usbcali.gestion_restaurante.dto.request.CrearSedeRequest;
+import com.edu.usbcali.gestion_restaurante.dto.request.UpdateSedeRequest;
 import com.edu.usbcali.gestion_restaurante.mapper.SedeMapper;
 import com.edu.usbcali.gestion_restaurante.repository.SedeRepository;
 import com.edu.usbcali.gestion_restaurante.service.SedeService;
+
 
 @Service
 public class SedeServiceImpl implements SedeService{
@@ -39,7 +43,7 @@ public class SedeServiceImpl implements SedeService{
         return sedeDTO;
     }
     @Override
-    public SedeDTO eliminarSede(int sedeId) throws Exception {
+    public SedeDTO eliminarSede(Integer sedeId) throws Exception {
         // Validar que el ID sea válido
         if (sedeId <= 0) {
             throw new Exception("El ID de la sede debe ser mayor a 0");
@@ -56,6 +60,28 @@ public class SedeServiceImpl implements SedeService{
 
         // Convertir y retornar el DTO
         return SedeMapper.domainToDTO(sede);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public SedeDTO actualizarSede(Integer sedeId, UpdateSedeRequest updateSedeRequest) throws Exception{
+        Sede sede =findById(sedeId);
+
+        sede=SedeMapper.UpdateSedeRequestToDomain(sede, updateSedeRequest);
+        sede=sedeRepository.save(sede);
+
+        return SedeMapper.domainToDTO(sede);
+
+    }
+    
+    @Transactional(readOnly = true)
+    protected Sede findById(Integer id) throws Exception {
+        return sedeRepository.findById(id)
+                .orElseThrow(
+                        () -> new Exception(
+                                String.format("No existe categoria por el id", id)
+                        )
+                );
     }
 
 }
