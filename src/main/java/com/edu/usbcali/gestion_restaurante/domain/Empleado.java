@@ -23,10 +23,10 @@ public class Empleado {
     private Integer id_empleado;
 
     @Column(nullable = false, name = "nombre",length = 100)
-    private String nombre_empleado;
+    private String nombreEmpleado;
 
     @Column(nullable = false, name = "apellido",length = 100)
-    private String apellido_empleado;
+    private String apellidoEmpleado;
 
     @Column(nullable = false, name = "fecha_contratacion")
     private LocalDateTime fecha_contratacion;
@@ -43,7 +43,7 @@ public class Empleado {
     private Cargo cargo;
 
     public enum Cargo {
-        CAJERO, COCINERO, GERENTE, ADMINISTRADOR
+       Cajero,Administrador,Cocinero,Mesero,Gerente
     }
 
 }
