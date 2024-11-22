@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.edu.usbcali.gestion_restaurante.domain.Empleado;
+import com.edu.usbcali.gestion_restaurante.domain.Sede;
 import com.edu.usbcali.gestion_restaurante.dto.EmpleadoDTO;
 import com.edu.usbcali.gestion_restaurante.dto.request.CrearEmpleadoRequest;
+import com.edu.usbcali.gestion_restaurante.dto.request.UpdateEmpleadoRequest;
 
 public class EmpleadoMapper {
 
@@ -53,7 +55,31 @@ public class EmpleadoMapper {
         .fecha_contratacion(crearEmpleadoRequest.getFechaContratacion())
         .salario_empleado(crearEmpleadoRequest.getSalarioEmpleado())
         .cargo(crearEmpleadoRequest.getCargo())
-        .build();
-            
+        .build();       
+    }
+
+    public static Empleado updateEmpleadoRequestToDomnain(Empleado empleado,UpdateEmpleadoRequest updateEmpleadoRequest){
+     // Actualizamos los campos del empleado con los valores del request
+    if (updateEmpleadoRequest.getNombreEmpleado() != null) {
+        empleado.setNombreEmpleado(updateEmpleadoRequest.getNombreEmpleado());
+    }
+    
+    if (updateEmpleadoRequest.getApellidoEmpleado() != null) {
+        empleado.setApellidoEmpleado(updateEmpleadoRequest.getApellidoEmpleado());
+    }
+
+    if (updateEmpleadoRequest.getFecha_contratacion() != null) {
+        empleado.setFecha_contratacion(updateEmpleadoRequest.getFecha_contratacion());
+    }
+
+    if (updateEmpleadoRequest.getSalario_empleado() != null) {
+        empleado.setSalario_empleado(updateEmpleadoRequest.getSalario_empleado());
+    }
+
+    if (updateEmpleadoRequest.getCargo() != null) {
+        empleado.setCargo(updateEmpleadoRequest.getCargo());
+    }
+
+    return empleado;
     }
 }

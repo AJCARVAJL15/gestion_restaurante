@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,10 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.edu.usbcali.gestion_restaurante.domain.Empleado;
 import com.edu.usbcali.gestion_restaurante.dto.EmpleadoDTO;
 import com.edu.usbcali.gestion_restaurante.dto.request.CrearEmpleadoRequest;
+import com.edu.usbcali.gestion_restaurante.dto.request.UpdateEmpleadoRequest;
 import com.edu.usbcali.gestion_restaurante.mapper.EmpleadoMapper;
 import com.edu.usbcali.gestion_restaurante.repository.EmpleadoRepository;
 import com.edu.usbcali.gestion_restaurante.service.EmpleadoService;
-//com.edu.usbcali.gestion_restaurante.service.EmpleadoService
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/empleado")
@@ -53,5 +56,12 @@ public class EmpleadoController {
     public List<Empleado>  obtenerEmpleadosPorSede(@PathVariable Integer idSede) {
         return empleadoService.buscarEmpleados(idSede);
     }
+
+    @PutMapping(value="/update/empleado/{idEmpleado}")
+    public ResponseEntity<EmpleadoDTO> actualizarEmpleado(@PathVariable Integer idEmpleado,@RequestBody @Valid UpdateEmpleadoRequest updateEmpleadoRequest) throws Exception{
+        EmpleadoDTO empleadoResponseDTO = empleadoService.actualizarEmpleado(idEmpleado, updateEmpleadoRequest);
+        return ResponseEntity.ok(empleadoResponseDTO);
+    }
+
  
 }

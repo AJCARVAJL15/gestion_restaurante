@@ -10,6 +10,7 @@ import com.edu.usbcali.gestion_restaurante.domain.Empleado;
 import com.edu.usbcali.gestion_restaurante.domain.Sede;
 import com.edu.usbcali.gestion_restaurante.dto.EmpleadoDTO;
 import com.edu.usbcali.gestion_restaurante.dto.request.CrearEmpleadoRequest;
+import com.edu.usbcali.gestion_restaurante.dto.request.UpdateEmpleadoRequest;
 import com.edu.usbcali.gestion_restaurante.mapper.EmpleadoMapper;
 import com.edu.usbcali.gestion_restaurante.repository.EmpleadoRepository;
 import com.edu.usbcali.gestion_restaurante.repository.SedeRepository;
@@ -56,10 +57,49 @@ public class EmpleadoServiceImpl implements EmpleadoService {
         return EmpleadoMapper.domainToDTO(empleado);
      }
 
+
     @Override
     public List<Empleado> buscarEmpleados(Integer idSede){
         return empleadoRepository.findById_sede(idSede);
     }
-     
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public EmpleadoDTO actualizarEmpleado(Integer idEmpleado, UpdateEmpleadoRequest updateEmpleadoRequest) throws Exception{
+      
+        Empleado empleado = findById(idEmpleado);
+
+        Integer idSede = updateEmpleadoRequest.getIdSede();  // Suponiendo que UpdateEmpleadoRequest tiene un campo idSede
+        if (idSede != null) {
+            // Buscar la entidad Sede por id
+            Sede sede = sedeRepository.findById(idSede)
+                    .orElseThrow(() -> new Exception("Sede no encontrada con el id: " + idSede));
+            
+            // 3. Asignar la sede al empleado
+            empleado.setSede(sede);
+            System.out.println(empleado);
+
+        }
+        System.out.println(empleado);
+
+        empleado=EmpleadoMapper.updateEmpleadoRequestToDomnain(empleado, updateEmpleadoRequest);
+        System.out.println(empleado);
+
+        empleado=empleadoRepository.save(empleado);
+
+        return EmpleadoMapper.domainToDTO(empleado);
+
+
+    } 
+    
+    @Transactional(readOnly = true)
+    protected Empleado findById(Integer id) throws Exception {
+        return empleadoRepository.findById(id)
+                .orElseThrow(
+                    () -> new Exception(
+                        String.format("NO existe empleado con el id", id)
+                    )
+                );
+    }
 
     }
