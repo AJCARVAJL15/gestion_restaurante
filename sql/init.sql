@@ -10,7 +10,7 @@ CREATE TYPE tipo_reporte AS ENUM ('Ventas', 'Inventario', 'Cierres de Caja', 'Co
 
 
 -- Tabla de Sedes
-CREATE TABLE Sedes (
+CREATE TABLE sedes (
                        id_sede SERIAL PRIMARY KEY,
                        nombre VARCHAR(100) NOT NULL,
                        ubicacion VARCHAR(255) NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE Sedes (
 );
 
 -- Tabla de Empleados
-CREATE TABLE Empleados (
+CREATE TABLE empleados (
                            id_empleado SERIAL PRIMARY KEY,
                            nombre VARCHAR(100) NOT NULL,
                            apellido VARCHAR(100) NOT NULL,
