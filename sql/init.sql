@@ -14,8 +14,8 @@ CREATE TABLE Sedes (
                        id_sede SERIAL PRIMARY KEY,
                        nombre VARCHAR(100) NOT NULL,
                        ubicacion VARCHAR(255) NOT NULL,
-                       tipo tipo_sede NOT NULL,
-                       estado estado_sede DEFAULT 'Operativa',
+                       tipo VARCHAR(20) NOT NULL,
+                       estado VARCHAR(20) NOT NULL,
                        fecha_apertura DATE NOT NULL,
                        telefono_contacto VARCHAR(20)
 );
@@ -25,7 +25,7 @@ CREATE TABLE Empleados (
                            id_empleado SERIAL PRIMARY KEY,
                            nombre VARCHAR(100) NOT NULL,
                            apellido VARCHAR(100) NOT NULL,
-                           cargo cargo_empleado NOT NULL,
+                           cargo VARCHAR(20) NOT NULL,
                            fecha_contratacion DATE NOT NULL,
                            salario DECIMAL(10, 2) NOT NULL,
                            id_sede INT,
